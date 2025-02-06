@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
     private Vector2 movementInput;
     public float movementSpeed = 10f;
     private bool shooting = false;
     private Coroutine shootingCoroutine;
     public float bulletsPerSecond = 10f;
+    public float detectionRange = 0.4f;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -23,11 +22,7 @@ public class Player : MonoBehaviour
 
         if (movementInput != Vector2.zero)
         {
-            rb.velocity = movementInput * movementSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
+            transform.Translate(movementInput * movementSpeed * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -45,6 +40,20 @@ public class Player : MonoBehaviour
             {
                 StopCoroutine(shootingCoroutine);
                 shootingCoroutine = null;
+            }
+        }
+        CheckForTaggedObjects();
+    }
+    private void CheckForTaggedObjects()
+    {
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("enemy projectile");
+        foreach (GameObject projectile in projectiles)
+        {
+            if (Vector2.Distance(transform.position, projectile.transform.position) < detectionRange)
+            {
+                Debug.Log("hit player");
+                Destroy(projectile);
+                return;
             }
         }
     }
