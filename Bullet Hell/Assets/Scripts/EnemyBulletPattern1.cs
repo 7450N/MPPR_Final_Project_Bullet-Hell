@@ -6,35 +6,21 @@ public class EnemyBulletPattern1 : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public Transform firePoint;
-    private Coroutine shootingCoroutine;
     private float currentAngle = 0;
     public float angle = 130;
     public float bulletsPerSecond = 10f;
-    private Enemy enemy; // Private field to hold reference
+    public bool isShooting = false;
 
-    private void Start()
+    public void Start()
     {
-        enemy = GetComponent<Enemy>(); // Ensure enemy is assigned before using it
-
-        if (enemy == null)
-        {
-            Debug.LogError("EnemyBulletPattern1: No Enemy component found on " + gameObject.name);
-            return; // Exit if there's no Enemy script attached
-        }
-
-        shootingCoroutine = StartCoroutine(ShootContinuously());
+        StartCoroutine(ShootContinuously());
+    }
+    public void ToggleShooting(bool enable)
+    {
+        isShooting = enable;
     }
 
-    private void Update()
-    {
-        if (enemy != null && enemy.enemyDead && shootingCoroutine != null)
-        {
-            StopCoroutine(shootingCoroutine);
-            shootingCoroutine = null; // Prevent multiple stops
-        }
-    }
-
-    public void Shoot()
+    private void Shoot()
     {
         currentAngle += angle;
         SpawnProjectile(currentAngle);
@@ -53,9 +39,14 @@ public class EnemyBulletPattern1 : MonoBehaviour
     {
         while (true)
         {
-            Shoot();
+            if (isShooting)
+            {
+                Shoot();
+            }
+
             yield return new WaitForSeconds(1f / bulletsPerSecond);
         }
     }
 }
+
 
