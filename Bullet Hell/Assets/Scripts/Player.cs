@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public float healRate = 0.2f;
     public float detectionRange = 0.4f;
     public int hp = 100;
-    private int maxHp = 100;
+    private int maxHp;
     public int energy = 100;
     private int maxEnergy;
     public Image energyBar;
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+        maxHp = hp;
         maxEnergy = energy;
         energyBarFill = energyBar.transform.GetChild(0).GetComponent<Image>();
         healthBarFill = healthBar.transform.GetChild(0).GetComponent<Image>();

@@ -456,10 +456,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 7
   bulletsPerSecond: 10
-  energyPerSecond: 10
+  energyPerSecond: 5
   healRate: 1
   detectionRange: 0.3
-  hp: 100
+  hp: 60
   energy: 50
   energyBar: {fileID: 678519255}
   healthBar: {fileID: 1853100977}
@@ -539,7 +539,7 @@ Transform:
   m_GameObject: {fileID: 962483822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.16, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
