@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - enemy
+  - border
+  - player projectile
+  - enemy projectile
   layers:
   - Default
   - TransparentFX
