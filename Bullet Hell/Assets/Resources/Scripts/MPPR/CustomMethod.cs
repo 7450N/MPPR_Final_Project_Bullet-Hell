@@ -78,10 +78,8 @@ namespace MPPR
 
         public static Vector3 Slerp(Vector3 start, Vector3 end, float t)      //Spherical Interpolatiion method for vector using the formula Slerp(A,B,t) = (sin((1-t)θ) / sin(θ)) * A + (sin(tθ) / sin(θ)) * B
         {   
-            Vector3 a = start;
-            Vector3 b = end;
-            a.Normalize();  //normalize the vectors
-            b.Normalize();  //normalize the vectors
+            Vector3 a = start.normalized;
+            Vector3 b = end.normalized;
 
             float dot = DotProduct(a, b);
             dot = dot.Clamp(-1.0f, 1.0f);
