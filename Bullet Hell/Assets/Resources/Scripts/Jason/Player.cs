@@ -18,7 +18,7 @@ namespace Jason
         // Start is called before the first frame update
         void Start()
         {
-            PlayerConstants.XMaxRange = xMaxRange;
+            PlayerConstants.XMaxRange = xMaxRange;           
             PlayerConstants.XMinRange = xMinRange;
             PlayerConstants.ZMaxRange = zMaxRange;
             PlayerConstants.ZMinRange = zMinRange;
@@ -34,7 +34,7 @@ namespace Jason
 
         private void GetInput()
         {
-            xInput = Input.GetAxis("Horizontal");
+            xInput = Input.GetAxis("Horizontal");           
             zInput = Input.GetAxis("Vertical");
         }
 
