@@ -15,9 +15,14 @@ namespace Janaw
         public GameObject bulletPrefab;
         public bool shootTwoBullets = false;
 
+        public int maxHealth = 100;
+        public int currentHealth;
+        private float detectionRange = 0.2f;
+
 
         void Start()
         {
+            currentHealth = maxHealth;
         }
         void Update()
         {
@@ -47,6 +52,8 @@ namespace Janaw
                     shootingCoroutine = null;
                 }
             }
+
+            CheckForBullets();
         }
         private IEnumerator ShootContinuously()
         {
@@ -63,6 +70,34 @@ namespace Janaw
                     Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
                 yield return new WaitForSeconds(1f / bulletsPerSecond);
             }
+        }
+
+        private void CheckForBullets()
+        {
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+
+            foreach (GameObject bullet in bullets)
+            {
+                if (Vector2.Distance(transform.position, bullet.transform.position) < detectionRange)
+                {
+                    TakeDamage(10);
+                    Destroy(bullet);
+                }
+            }
+        }
+
+        private void TakeDamage(int damage)
+        {
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            Debug.Log("Player died");
         }
     }
 }

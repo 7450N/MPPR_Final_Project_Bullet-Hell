@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Resources/Scenes/Menu.unity
+    guid: 1ca1c1b5076be334fbebcab6153cff70
+  - enabled: 1
     path: Assets/Resources/Scenes/Joseph_Lvl_Cutscene.unity
     guid: 8f65c8cb7b5b29143b7726475eb25dd7
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Joseph_Lvl2.unity
     guid: ec2d62a9afcc268458f99c14315733a7
-  - enabled: 1
-    path: Assets/Resources/Scenes/Joseph_Lvl_Cutscene 2.unity
-    guid: 62e343db2a08ba243a87a4200f93d7b1
   - enabled: 1
     path: Assets/Resources/Scenes/Joseph_Lvl3.unity
     guid: 829bdef7b8147f44cb8e1c2b8f6af7a5
