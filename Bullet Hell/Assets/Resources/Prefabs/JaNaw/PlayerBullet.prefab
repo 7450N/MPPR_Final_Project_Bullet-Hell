@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5423816099494489580}
   - component: {fileID: 3089470658492498818}
-  - component: {fileID: -4975691893801714936}
+  - component: {fileID: 1654004283118239134}
   m_Layer: 0
-  m_Name: HomingBulletJ
-  m_TagString: Bullet
+  m_Name: PlayerBullet
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.5498967, b: 0, a: 1}
+  m_Color: {r: 0.26268315, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4975691893801714936
+--- !u!114 &1654004283118239134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,13 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3914664014215930533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 648c6833ffae0bb4496e9082d5102010, type: 3}
+  m_Script: {fileID: 11500000, guid: b07554f64926a5a41b30c12b15ae71b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  startPoint: {x: 0, y: 0}
-  controlPoint: {x: 0, y: 0}
-  endPoint: {x: 0, y: 0}
-  travelTime: 2.5
-  homingSpeed: 6
-  homingDelay: 0
+  speed: 5
+  zigzagAmplitude: 0.2
+  zigzagFrequency: 3
+  secondBullet: 0
+  radiusGrowth: 4

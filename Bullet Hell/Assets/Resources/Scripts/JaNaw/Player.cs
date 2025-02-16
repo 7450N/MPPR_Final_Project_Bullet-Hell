@@ -90,7 +90,7 @@ namespace Janaw
             {
                 if (Vector2.Distance(transform.position, bullet.transform.position) < detectionRange)
                 {
-                    TakeDamage(10);
+                    TakeDamage(5);
                     Destroy(bullet);
                 }
             }

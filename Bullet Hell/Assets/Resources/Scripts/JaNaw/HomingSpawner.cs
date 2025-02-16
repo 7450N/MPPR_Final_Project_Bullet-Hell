@@ -6,7 +6,7 @@ namespace Janaw
     public class HomingSpawner : MonoBehaviour
     {
         public GameObject bulletPrefab;
-        public float spawnDelay = 0.2f;
+        public float bulletPerSecond = 5f;
         public float waveDuration = 2f;
         public float pauseDuration = 1f;
 
@@ -28,7 +28,7 @@ namespace Janaw
                     Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
                     Instantiate(bulletPrefab, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
 
-                    yield return new WaitForSeconds(spawnDelay);
+                    yield return new WaitForSeconds(1/bulletPerSecond);
                 }
 
                 yield return new WaitForSeconds(pauseDuration);
