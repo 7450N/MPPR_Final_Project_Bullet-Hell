@@ -2,58 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZigZagBulletJ : MonoBehaviour
+namespace Janaw
 {
-    public Transform player;
-    public float speed = 10f;
-    public float zigzagAmplitude = 1f; // How far left and right the bullet moves
-    public float zigzagFrequency = 5f; // How fast the zigzag happens
-    public bool secondBullet = false;
-
-    private float startTime;
-    private Vector2 startPosition;
-    private Vector2 direction;
-    public float radiusGrowth = 0.5f;
-
-    void Start()
+    public class ZigZagBullet : MonoBehaviour
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        public Transform player;
+        public float speed = 10f;
+        public float zigzagAmplitude = 1f; // How far left and right the bullet moves
+        public float zigzagFrequency = 5f; // How fast the zigzag happens
+        public bool secondBullet = false;
 
-        startTime = Time.time;
-        startPosition = transform.position;
+        private float startTime;
+        private Vector2 startPosition;
+        private Vector2 direction;
+        public float radiusGrowth = 0.5f;
 
-        if (player != null)
+        void Start()
         {
-            direction = (player.position - transform.position).normalized;
-        }
-    }
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (player != null)
-        {
-            float timeElapsed = Time.time - startTime;
-            float radius = radiusGrowth * timeElapsed;
+            startTime = Time.time;
+            startPosition = transform.position;
 
-            // Move along the direction vector
-            Vector2 moveDirection = direction * speed * timeElapsed;
-
-            // Zig-zag movement perpendicular to the direction vector
-            Vector2 perpendicularDirection = new Vector2(-direction.y, direction.x);
-            float zigzagOffset = Mathf.Sin(timeElapsed * zigzagFrequency) * zigzagAmplitude * radius;
-            if (secondBullet)
+            if (player != null)
             {
-                zigzagOffset = Mathf.Sin(timeElapsed * zigzagFrequency + Mathf.PI) * zigzagAmplitude * radius;
+                direction = (player.position - transform.position).normalized;
             }
-
-            Vector2 newPosition = startPosition + moveDirection + perpendicularDirection * zigzagOffset;
-            transform.position = newPosition;
         }
-    }
 
-    void OnBecameInvisible()
-    {
-        Destroy(gameObject);
+        // Update is called once per frame
+        void Update()
+        {
+            if (player != null)
+            {
+                float timeElapsed = Time.time - startTime;
+                float radius = radiusGrowth * timeElapsed;
+
+                // Move along the direction vector
+                Vector2 moveDirection = direction * speed * timeElapsed;
+
+                // Zig-zag movement perpendicular to the direction vector
+                Vector2 perpendicularDirection = new Vector2(-direction.y, direction.x);
+                float zigzagOffset = Mathf.Sin(timeElapsed * zigzagFrequency) * zigzagAmplitude * radius;
+                if (secondBullet)
+                {
+                    zigzagOffset = Mathf.Sin(timeElapsed * zigzagFrequency + Mathf.PI) * zigzagAmplitude * radius;
+                }
+
+                Vector2 newPosition = startPosition + moveDirection + perpendicularDirection * zigzagOffset;
+                transform.position = newPosition;
+            }
+        }
+
+        void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
     }
 }
