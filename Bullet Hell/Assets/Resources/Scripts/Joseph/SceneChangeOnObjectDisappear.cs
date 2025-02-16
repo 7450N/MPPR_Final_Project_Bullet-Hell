@@ -5,20 +5,21 @@ namespace Joseph
 {
     public class SceneChangeOnObjectDisappear : MonoBehaviour
     {
-        public GameObject targetObject; // The object to monitor
-        public string sceneName;        // Scene to switch to
+        public GameObject targetObject;
+        public string sceneName; // The name of the scene to load when the GameObject disappears.
 
         void Update()
         {
-            // Check if the target object is missing (destroyed or inactive)
+            // This checks if the GameObkect is still in the scene.
             if (targetObject == null || !targetObject.activeInHierarchy)
             {
-                ChangeScene();
+                ChangeScene(); // Changes the scene if the GameObekct is gone.
             }
         }
 
         void ChangeScene()
         {
+            // Load the specified scene.
             SceneManager.LoadScene(sceneName);
         }
     }

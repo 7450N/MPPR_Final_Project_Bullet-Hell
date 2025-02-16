@@ -11,13 +11,13 @@ namespace Joseph
         private float amplitude;
         private float frequency;
         private float timeElapsed = 0f;
-        private float bulletRadius = 0.3f; // Adjusted for bullet scale
+        private float bulletRadius = 0.3f;
 
         public void InitializeBezierMovement(Vector2 start, Vector2 dir, float amp, float freq)
         {
             startPosition = start;
-            direction = NormalizeVector(dir);
-            speed = GetVectorMagnitude(dir);
+            direction = NormalizeVector(dir);  // Normalize the direction vector.
+            speed = GetVectorMagnitude(dir);  // Get the magnitude of the direction vector.
             amplitude = amp;
             frequency = freq;
         }
@@ -26,17 +26,19 @@ namespace Joseph
         {
             timeElapsed += Time.deltaTime;
 
-            // Move along a Bezier wave path
+            // Apply a wave offset to create the curved movement.
             float waveOffset = CustomSin(timeElapsed * frequency) * amplitude;
+
+            // Perpendicular vector to the direction.
             Vector2 perpendicular = new Vector2(-direction.y, direction.x);
+
+            // Calculate the new position using the wave offset.
             Vector2 curvedPosition = startPosition + direction * (speed * timeElapsed) + perpendicular * waveOffset;
 
             transform.position = curvedPosition;
 
-            // Check collision with Player
             CheckCollisionWithPlayer();
 
-            // Destroy bullet if it moves too far or if it's been 5 seconds
             if (timeElapsed > 6f)
             {
                 Destroy(gameObject);
@@ -48,36 +50,38 @@ namespace Joseph
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
-                float playerRadius = 0.2f; // Adjusted for player scale
+                // Calculate the distance between the bullet and the player.
                 float distance = GetDistance(transform.position, player.transform.position);
 
-                if (distance < bulletRadius + playerRadius)
+                if (distance < bulletRadius + 0.2f)  // Check if the distance is less than the combined radii.
                 {
                     Debug.Log("Bullet hit the Player!");
-                    Destroy(player); // Destroy the player
-                    Destroy(gameObject); // Destroy the bullet
+                    Destroy(player);
+                    Destroy(gameObject);
                 }
             }
         }
 
+        // Euclidean distance between two points.
         private float GetDistance(Vector3 a, Vector3 b)
         {
             float dx = a.x - b.x;
             float dy = a.y - b.y;
-            return (float)Math.Sqrt(dx * dx + dy * dy);
+            return (float)Math.Sqrt(dx * dx + dy * dy);  // Pythagorean theorem.
         }
 
         private Vector2 NormalizeVector(Vector2 v)
         {
             float mag = GetVectorMagnitude(v);
-            return mag == 0 ? Vector2.zero : new Vector2(v.x / mag, v.y / mag);
+            return mag == 0 ? Vector2.zero : new Vector2(v.x / mag, v.y / mag);  // Normalize the vector.
         }
 
         private float GetVectorMagnitude(Vector2 v)
         {
-            return (float)Math.Sqrt(v.x * v.x + v.y * v.y);
+            return (float)Math.Sqrt(v.x * v.x + v.y * v.y);  // Magnitude of the vector.
         }
 
+        // Custom sine approximation (Taylor series expansion).
         private float CustomSin(float x)
         {
             float x2 = x * x;
