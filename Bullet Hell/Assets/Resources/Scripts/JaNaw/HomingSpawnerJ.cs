@@ -1,35 +1,38 @@
 using System.Collections;
 using UnityEngine;
 
-public class HomingSpawnerJ : MonoBehaviour
+namespace Janaw
 {
-    public GameObject bulletPrefab;
-    public float spawnDelay = 0.2f;
-    public float waveDuration = 2f;
-    public float pauseDuration = 1f;
-
-    void Start()
+    public class HomingSpawner : MonoBehaviour
     {
-        StartCoroutine(SpawnBezierBullets());
-    }
+        public GameObject bulletPrefab;
+        public float spawnDelay = 0.2f;
+        public float waveDuration = 2f;
+        public float pauseDuration = 1f;
 
-    IEnumerator SpawnBezierBullets()
-    {
-        while (true)
+        void Start()
         {
-            float waveEndTime = Time.time + waveDuration;
+            StartCoroutine(SpawnBezierBullets());
+        }
 
-            while (Time.time < waveEndTime)
+        IEnumerator SpawnBezierBullets()
+        {
+            while (true)
             {
-                // Spawn 3 bullets in different paths
-                Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-                Instantiate(bulletPrefab, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
+                float waveEndTime = Time.time + waveDuration;
 
-                yield return new WaitForSeconds(spawnDelay);
+                while (Time.time < waveEndTime)
+                {
+                    // Spawn 3 bullets in different paths
+                    Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                    Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                    Instantiate(bulletPrefab, transform.position + new Vector3(0, -1, 0), Quaternion.identity);
+
+                    yield return new WaitForSeconds(spawnDelay);
+                }
+
+                yield return new WaitForSeconds(pauseDuration);
             }
-
-            yield return new WaitForSeconds(pauseDuration);
         }
     }
 }

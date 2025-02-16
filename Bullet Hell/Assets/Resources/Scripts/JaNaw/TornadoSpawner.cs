@@ -2,43 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TornadoSpawnerJ : MonoBehaviour
+namespace Janaw
 {
-    public GameObject bulletPrefab;
-    public int bulletCount = 10;
-    public float bulletPerSecond = 10f;
-    public float waveDuration = 2f;
-    public float pauseDuration = 2f;
-
-    void Start()
+    public class TornadoSpawner : MonoBehaviour
     {
-        StartCoroutine(SpawnTornadoBullets());
-    }
+        public GameObject bulletPrefab;
+        public int bulletCount = 10;
+        public float bulletPerSecond = 10f;
+        public float waveDuration = 2f;
+        public float pauseDuration = 2f;
 
-    IEnumerator SpawnTornadoBullets()
-    {
-        while (true)
+        void Start()
         {
-            float waveEndTime = Time.time + waveDuration;
-            while (Time.time < waveEndTime)
+            StartCoroutine(SpawnTornadoBullets());
+        }
+
+        IEnumerator SpawnTornadoBullets()
+        {
+            while (true)
             {
-                for (int i = 0; i < bulletCount; i++)
+                float waveEndTime = Time.time + waveDuration;
+                while (Time.time < waveEndTime)
                 {
-                    float angle = i * (360f / bulletCount); // Distribute bullets in a circle
-                    float radians = angle * Mathf.Deg2Rad;
+                    for (int i = 0; i < bulletCount; i++)
+                    {
+                        float angle = i * (360f / bulletCount); // Distribute bullets in a circle
+                        float radians = angle * Mathf.Deg2Rad;
 
-                    Vector2 spawnPos = new Vector2(
-                        transform.position.x + Mathf.Cos(radians) * 0.1f,
-                        transform.position.y + Mathf.Sin(radians) * 0.3f
-                    );
+                        Vector2 spawnPos = new Vector2(
+                            transform.position.x + Mathf.Cos(radians) * 0.1f,
+                            transform.position.y + Mathf.Sin(radians) * 0.3f
+                        );
 
-                    GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
-                    bullet.GetComponent<TornadoBulletJ>().rotationSpeed = 2f + i * 0.1f; // Slightly different speeds for variety
+                        GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+                        bullet.GetComponent<TornadoBullet>().rotationSpeed = 2f + i * 0.1f; // Slightly different speeds for variety
+                    }
+
+                    yield return new WaitForSeconds(1f / bulletPerSecond);
                 }
-
-                yield return new WaitForSeconds(1f / bulletPerSecond);
+                yield return new WaitForSeconds(pauseDuration);
             }
-            yield return new WaitForSeconds(pauseDuration);
         }
     }
 }
