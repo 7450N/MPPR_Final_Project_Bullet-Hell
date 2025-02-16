@@ -20,7 +20,8 @@ namespace Jason
         // Update is called once per frame
         void Update()
         {
-            transform.rotation *= Quaternion.Euler(0, 0, rotationSpeed * dir * Time.deltaTime); // rotate in the z-axis
+            //transform.rotation *= Quaternion.Euler(0, 0, rotationSpeed * dir * Time.deltaTime); // rotate in the z-axis
+            transform.rotation *= Quaternion.Euler(0, rotationSpeed * dir * Time.deltaTime, 0); // rotate in the y-axis
         }
     }
 
