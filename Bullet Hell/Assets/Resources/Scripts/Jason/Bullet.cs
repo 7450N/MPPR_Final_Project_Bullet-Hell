@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace Jason
         void Start()
         {
            float attackPattern = Random.Range(0, AttackType.length);
+
         }
         // Update is called once per frame
         void Update()
@@ -47,3 +49,4 @@ namespace Jason
         }
     }
 }
+*/
