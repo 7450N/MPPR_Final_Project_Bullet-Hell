@@ -141,7 +141,8 @@ namespace MPPR
                 (1 - t) * start.w + t * end.w
             );
         }
-        /*
+
+
         public static Vector3 BezierCurve(Vector3 start, Vector3 end, int controlPointCount, float t)
         {
             // Generate a list of controls points and add the start as the first element of the list
@@ -150,7 +151,7 @@ namespace MPPR
             for (int i = 0; i < controlPointCount; i++)
             {
                 Vector3 randomPoint = new(Random.Range(SnakeConstants.XMinRange, SnakeConstants.XMaxRange),
-                                          Random.Range(SnakeConstants.YMinRange, SnakeConstants.YMaxRange),
+                                          Random.Range(SnakeConstants.ZMinRange, SnakeConstants.ZMaxRange),
                                           0); // Generate a random control point
                 controlPoints.Add(randomPoint);       //add the control point to the list
             }
@@ -160,6 +161,7 @@ namespace MPPR
             // Calculate the position along the curve using De Casteljau’s Algorithm
             return DeCasteljau(controlPoints, t);
         }
+
 
         private static Vector3 DeCasteljau(List<Vector3> points, float t)
         {
@@ -173,6 +175,6 @@ namespace MPPR
             }
             return points[0];
         }
-        */
+
     }
 }

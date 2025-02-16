@@ -47,6 +47,7 @@ namespace Jason
             
             transform.Translation(moveDir * speed * Time.deltaTime, Space.Self);
 
+
             // to make the player not to go out of bound
             Vector3 clampedPos = transform.position;
             clampedPos.x = clampedPos.x.Clamp(xMinRange, xMaxRange);
