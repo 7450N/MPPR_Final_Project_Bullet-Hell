@@ -124,7 +124,7 @@ public class EnemyBulletPattern3 : MonoBehaviour
                 UpdateBlastBar();
             }
 
-            if (blastCharge == maxBlastCharge)
+            if (blastCharge >= maxBlastCharge)
             {
                 blasting = true;
             }
@@ -145,7 +145,7 @@ public class EnemyBulletPattern3 : MonoBehaviour
     }
     private void UpdateBlastBar()
     {
-        float healthPercent = (float)blastCharge / maxBlastCharge;
-        blastBarFill.fillAmount = healthPercent;
+        float blastPercent = (float)blastCharge / maxBlastCharge;
+        blastBarFill.fillAmount = blastPercent;
     }
 }
