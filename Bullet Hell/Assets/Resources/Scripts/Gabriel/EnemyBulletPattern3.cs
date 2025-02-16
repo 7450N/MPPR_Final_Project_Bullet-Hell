@@ -58,7 +58,7 @@ namespace Gabriel
 
         private IEnumerator EaseIn(GameObject projectile)
         {
-            // Smoothly move the projectile towards the blast point
+            // Smoothly move the projectile towards the blast point without using Lerp
             Vector3 startPoint = projectile.transform.position;
             Vector3 endPoint = blastPoint.position;
             float timeElapsed = 0;
@@ -68,12 +68,11 @@ namespace Gabriel
                 timeElapsed += Time.deltaTime;
                 float t = timeElapsed / duration;
                 t = Mathf.Clamp01(t);
-                t = t * t;
+                t = t * t; // Easing (quadratic ease-in)
 
-                if (projectile != null)
-                {
-                    projectile.transform.position = Vector3.Lerp(startPoint, endPoint, t);
-                }
+                // Calculate the position manually instead of using Lerp
+                Vector3 newPosition = startPoint + (endPoint - startPoint) * t;
+                projectile.transform.position = newPosition;
 
                 yield return null;
             }
