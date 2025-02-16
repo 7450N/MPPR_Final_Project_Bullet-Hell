@@ -9,25 +9,35 @@ public class Snake : MonoBehaviour
 {      
     public List<Transform> BodyParts = new List<Transform>(); // A list of snake body parts
 
-    public float minDistance = 0.5f; // Minimum distance between body parts
+    public float minDistance = 1f; // Minimum distance between body parts
+    public float speed = 5; // Speed of the snake
 
-    public float speed = 1; // Speed of the snake
-    public float rotationSpeed = 50; // Rotation speed of the snake
-    [Range(0, 10)] public int numBodyParts = 1; // Number of body parts the snake has
-
+    [Range(0, 20)] public int numBodyParts = 1; // Number of body parts the snake has
     public GameObject bodyPrefab; // the prefab used to create the snake body parts
+
     private Transform currentPart; // the current body part
     private Transform previousPart; // the previous body part
     private float distance;
 
+    [SerializeField] private float xMaxRange = 16.5f;
+    [SerializeField] private float xMinRange = -16.5f;
+    [SerializeField] private float yMaxRange = 8.5f;
+    [SerializeField] private float yMinRange = -8.5f;
+
+    private Vector3 targetPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        SnakeConstants.YMaxRange = yMaxRange;
+        SnakeConstants.YMinRange = yMinRange;
+        SnakeConstants.XMaxRange = xMaxRange;
+        SnakeConstants.XMinRange = xMinRange;
         for (int i = 0; i < numBodyParts; i++)
         {
             AddBodyParts();
         }
+        SetRandomPos();
     }
 
     // Update is called once per frame
@@ -39,7 +49,14 @@ public class Snake : MonoBehaviour
 
     public void Move()
     {
-        BodyParts[0].Translation(speed * Time.smoothDeltaTime * BodyParts[0].up, Space.World); // Move the head of the snake
+        //BodyParts[0].Translation(speed * Time.smoothDeltaTime * BodyParts[0].up, Space.World); // Move the head of the snake
+        BodyParts[0].position = CustomMethod.MoveTowards(BodyParts[0].position, targetPos, speed * Time.smoothDeltaTime);
+
+        if (CustomMethod.CalculateDistance(BodyParts[0].position, targetPos) < 0.1f)    // If the character is close to the target, set a new target and reset t
+        {
+            SetRandomPos();
+        }
+
         for (int i = 1; i < BodyParts.Count; i++) // Move the body parts of the snake, starting from the second body part
         {
             currentPart = BodyParts[i];
@@ -52,9 +69,6 @@ public class Snake : MonoBehaviour
             float T = (Time.deltaTime * distance / minDistance * speed).Clamp(0f, 0.5f);
 
             currentPart.SetPositionAndRotation(CustomMethod.Slerp(currentPart.position, newPosition, T), CustomMethod.Slerp(currentPart.rotation, previousPart.rotation, T));
-            //currentPart.SetPositionAndRotation(Vector3.Slerp(currentPart.position, newPosition, T), Quaternion.Slerp(currentPart.rotation, previousPart.rotation, T));
-            //Debug.Log("Vector 3: " + Vector3.Slerp(currentPart.position, newPosition, T));
-           // Debug.Log("Custom: " + CustomMethod.Slerp(currentPart.position, newPosition, T));
         }
     }
 
@@ -64,5 +78,13 @@ public class Snake : MonoBehaviour
         Transform newPart = (Instantiate(bodyPrefab, BodyParts[^1].position, BodyParts[^1].rotation) as GameObject).transform; //^ accesses from the end of the list
         newPart.SetParent(transform); // add the new body part to the parent object
         BodyParts.Add(newPart); // add the new boddy part to the list
+    }
+
+
+    private void SetRandomPos()
+    {
+        targetPos.x = Random.Range(SnakeConstants.XMinRange, SnakeConstants.XMaxRange);
+        targetPos.y = Random.Range(SnakeConstants.YMinRange, SnakeConstants.YMaxRange);
+        targetPos.z = 0;
     }
 }
