@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
         }
 
         CheckForTaggedObjects();
+        if (hp <= 0)
+        {
+            Destroy(healthBar);
+            Destroy(gameObject);
+        }
     }
 
     private void ClampPosition()

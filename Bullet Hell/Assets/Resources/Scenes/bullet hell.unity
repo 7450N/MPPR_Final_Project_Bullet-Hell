@@ -459,7 +459,7 @@ MonoBehaviour:
   energyPerSecond: 5
   healRate: 1
   detectionRange: 0.3
-  hp: 60
+  hp: 50
   energy: 50
   energyBar: {fileID: 678519255}
   healthBar: {fileID: 1853100977}
@@ -776,8 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f255d1c7481b9fa438737cb7ff460233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHp: 2000
-  phase: 1
+  enemyHp: 3000
   enemyDead: 0
   detectionRange: 1
   infinityPoint: {fileID: 1416167590}
@@ -830,15 +829,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 2640875535555162182, guid: ddf335eee5f22aa44956f69c0d4dba4b, type: 3}
-  projectilePrefab2: {fileID: 2640875535555162182, guid: 4ca83440e04d9e74d9b74a5e582dda89, type: 3}
+  projectilePrefab2: {fileID: 2640875535555162182, guid: ddf335eee5f22aa44956f69c0d4dba4b, type: 3}
   blastPoint: {fileID: 1586162219}
   blastCharge: 0
-  maxBlastCharge: 200
-  bulletsPerSecond: 20
-  duration: 2
+  maxBlastCharge: 360
+  bulletsPerSecond: 60
+  duration: 1.25
   isShooting: 0
-  spread: 3
-  amountOfProjectiles: 6
+  spread: 1.5
+  amountOfProjectiles: 5
   blastBar: {fileID: 1684927424}
 --- !u!1 &1638365858
 GameObject:
@@ -1444,9 +1443,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1949653085}
+  - {fileID: 1688229740}
   - {fileID: 962483828}
   - {fileID: 1602319638}
   - {fileID: 1416167592}
   - {fileID: 1586162219}
-  - {fileID: 1688229740}
   - {fileID: 1995493186}

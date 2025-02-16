@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     public int enemyHp = 200;
-    public int phase = 1;
     private int enemyMaxHp = 200;
     public bool enemyDead = false;
     public float detectionRange = 1;
@@ -38,7 +37,6 @@ public class Enemy : MonoBehaviour
         }
         else if (enemyHp <= enemyMaxHp / 3)
         {
-            phase += 1;
             pattern2.ToggleShooting(false);
             Destroy(infinityPoint);
             blastBar.SetActive(true);
@@ -46,7 +44,6 @@ public class Enemy : MonoBehaviour
         }
         else if (enemyHp <= enemyMaxHp/3 * 2)
         {
-            phase += 1;
             pattern1.ToggleShooting(false);
             pattern2.ToggleShooting(true);
         }
