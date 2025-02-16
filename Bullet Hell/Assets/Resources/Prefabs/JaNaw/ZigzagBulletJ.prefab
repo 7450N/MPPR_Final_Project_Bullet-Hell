@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc9a4c10d67c074288245da471bcaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   speed: 5
   zigzagAmplitude: 0.2
   zigzagFrequency: 3
