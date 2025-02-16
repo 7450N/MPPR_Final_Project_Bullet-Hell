@@ -9,7 +9,7 @@ namespace Jason
     {
         [SerializeField] private float speed = 5f; // Speed of the player
         float xInput;
-        float yInput;
+        float zInput;
 
         // Start is called before the first frame update
         void Start()
@@ -28,13 +28,13 @@ namespace Jason
         private void GetInput()
         {
             xInput = Input.GetAxis("Horizontal");
-            yInput = Input.GetAxis("Vertical");
+            zInput = Input.GetAxis("Vertical");
         }
 
 
         private void Move()
         {
-            Vector3 moveDir = new Vector3(xInput, yInput, 0);
+            Vector3 moveDir = new Vector3(xInput, 0, zInput);
 
             if (moveDir != Vector3.zero) moveDir.Normalize();      //Normalize the vector to get consistent speed when moving diagonally
                

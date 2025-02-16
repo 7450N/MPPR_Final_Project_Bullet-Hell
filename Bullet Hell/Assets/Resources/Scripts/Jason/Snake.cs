@@ -22,16 +22,20 @@ namespace Jason
 
         [SerializeField] private float xMaxRange = 16.5f;
         [SerializeField] private float xMinRange = -16.5f;
-        [SerializeField] private float yMaxRange = 8.5f;
-        [SerializeField] private float yMinRange = -8.5f;
+        //[SerializeField] private float yMaxRange = 8.5f;
+        //[SerializeField] private float yMinRange = -8.5f;
+        [SerializeField] private float zMaxRange = 8.5f;
+        [SerializeField] private float zMinRange = -8.5f;
 
         private Vector3 targetPos;
 
         // Start is called before the first frame update
         void Start()
         {
-            SnakeConstants.YMaxRange = yMaxRange;
-            SnakeConstants.YMinRange = yMinRange;
+            //SnakeConstants.YMaxRange = yMaxRange;
+            //SnakeConstants.YMinRange = yMinRange;
+            SnakeConstants.ZMaxRange = zMaxRange;
+            SnakeConstants.ZMinRange = zMinRange;
             SnakeConstants.XMaxRange = xMaxRange;
             SnakeConstants.XMinRange = xMinRange;
             for (int i = 0; i < numBodyParts; i++)
@@ -50,7 +54,6 @@ namespace Jason
 
         public void Move()
         {
-            //BodyParts[0].Translation(speed * Time.smoothDeltaTime * BodyParts[0].up, Space.World); // Move the head of the snake
             BodyParts[0].position = CustomMethod.MoveTowards(BodyParts[0].position, targetPos, speed * Time.smoothDeltaTime);
 
             if (CustomMethod.CalculateDistance(BodyParts[0].position, targetPos) < 0.1f)    // If the character is close to the target, set a new target and reset t
@@ -66,7 +69,8 @@ namespace Jason
                 distance = CustomMethod.CalculateDistance(previousPart.position, currentPart.position);
 
                 Vector3 newPosition = previousPart.position;
-                newPosition.z = BodyParts[0].position.z;
+                //newPosition.z = BodyParts[0].position.z;
+                newPosition.y = BodyParts[0].position.y;
                 float T = (Time.deltaTime * distance / minDistance * speed).Clamp(0f, 0.5f);
 
                 currentPart.SetPositionAndRotation(CustomMethod.Slerp(currentPart.position, newPosition, T), CustomMethod.Slerp(currentPart.rotation, previousPart.rotation, T));
@@ -85,8 +89,10 @@ namespace Jason
         private void SetRandomPos()
         {
             targetPos.x = Random.Range(SnakeConstants.XMinRange, SnakeConstants.XMaxRange);
-            targetPos.y = Random.Range(SnakeConstants.YMinRange, SnakeConstants.YMaxRange);
-            targetPos.z = 0;
+            //targetPos.y = Random.Range(SnakeConstants.YMinRange, SnakeConstants.YMaxRange);
+            //targetPos.z = 0;
+            targetPos.z = Random.Range(SnakeConstants.ZMinRange, SnakeConstants.ZMaxRange);
+            targetPos.y = 0.5f;
         }
     }
 }
