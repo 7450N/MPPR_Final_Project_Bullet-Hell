@@ -22,8 +22,6 @@ namespace Jason
 
         [SerializeField] private float xMaxRange = 16.5f;
         [SerializeField] private float xMinRange = -16.5f;
-        //[SerializeField] private float yMaxRange = 8.5f;
-        //[SerializeField] private float yMinRange = -8.5f;
         [SerializeField] private float zMaxRange = 8.5f;
         [SerializeField] private float zMinRange = -8.5f;
 
@@ -32,8 +30,6 @@ namespace Jason
         // Start is called before the first frame update
         void Start()
         {
-            //SnakeConstants.YMaxRange = yMaxRange;
-            //SnakeConstants.YMinRange = yMinRange;
             SnakeConstants.ZMaxRange = zMaxRange;
             SnakeConstants.ZMinRange = zMinRange;
             SnakeConstants.XMaxRange = xMaxRange;

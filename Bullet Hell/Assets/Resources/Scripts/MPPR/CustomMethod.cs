@@ -141,7 +141,7 @@ namespace MPPR
                 (1 - t) * start.w + t * end.w
             );
         }
-
+        /*
         public static Vector3 BezierCurve(Vector3 start, Vector3 end, int controlPointCount, float t)
         {
             // Generate a list of controls points and add the start as the first element of the list
@@ -173,6 +173,6 @@ namespace MPPR
             }
             return points[0];
         }
-
+        */
     }
 }

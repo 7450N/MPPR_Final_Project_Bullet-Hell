@@ -169,8 +169,9 @@ GameObject:
   - component: {fileID: 579877352}
   - component: {fileID: 579877351}
   - component: {fileID: 579877350}
+  - component: {fileID: 579877354}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,12 +257,29 @@ Transform:
   m_GameObject: {fileID: 579877349}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -8.01}
+  m_LocalPosition: {x: 0, y: 0.5, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &579877354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579877349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca920297767f2142a0e588b69cb4512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMinRange: -17
+  xMaxRange: 17
+  zMinRange: -9
+  zMaxRange: 9
+  speed: 5
 --- !u!1 &739402017
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,8 +414,8 @@ Transform:
   m_GameObject: {fileID: 976857852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236948204}
@@ -604,7 +622,7 @@ Transform:
   m_GameObject: {fileID: 1236948203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 11.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -625,7 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BodyParts:
   - {fileID: 976857853}
-  minDistance: 1
+  minDistance: 1.5
   speed: 5
   numBodyParts: 10
   bodyPrefab: {fileID: 5906994454928081164, guid: 004742e8d5513de43a39738e74c4372c, type: 3}
