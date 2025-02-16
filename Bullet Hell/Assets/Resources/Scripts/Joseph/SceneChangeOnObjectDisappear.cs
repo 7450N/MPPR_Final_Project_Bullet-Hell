@@ -1,22 +1,26 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChangeOnObjectDisappear : MonoBehaviour
+namespace Joseph
 {
-    public GameObject targetObject; // The object to monitor
-    public string sceneName;        // Scene to switch to
-
-    void Update()
+    public class SceneChangeOnObjectDisappear : MonoBehaviour
     {
-        // Check if the target object is missing (destroyed or inactive)
-        if (targetObject == null || !targetObject.activeInHierarchy)
+        public GameObject targetObject; // The object to monitor
+        public string sceneName;        // Scene to switch to
+
+        void Update()
         {
-            ChangeScene();
+            // Check if the target object is missing (destroyed or inactive)
+            if (targetObject == null || !targetObject.activeInHierarchy)
+            {
+                ChangeScene();
+            }
+        }
+
+        void ChangeScene()
+        {
+            SceneManager.LoadScene(sceneName);
         }
     }
 
-    void ChangeScene()
-    {
-        SceneManager.LoadScene(sceneName);
-    }
 }

@@ -2,32 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZigzagSpawnerJ : MonoBehaviour
+namespace Janaw
 {
-    public GameObject bulletPrefab;
-    public float bulletPerSecond = 10f;
-    public float waveDuration = 2f;
-    public float pauseDuration = 1f;
-
-    void Start()
+    public class ZigzagSpawner : MonoBehaviour
     {
-        StartCoroutine(SpawnZigzagBullets());
-    }
+        public GameObject bulletPrefab;
+        public float bulletPerSecond = 10f;
+        public float waveDuration = 2f;
+        public float pauseDuration = 1f;
 
-    IEnumerator SpawnZigzagBullets()
-    {
-        while (true)
+        void Start()
         {
-            float waveEndTime = Time.time + waveDuration;
-            while (Time.time < waveEndTime)
-            {
-                GameObject bullet1 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                GameObject bullet2 = Instantiate(bulletPrefab, transform.position, transform.rotation);
-                bullet2.GetComponent<ZigZagBulletJ>().secondBullet = true;
-                yield return new WaitForSeconds(1f / bulletPerSecond);
-            }
+            StartCoroutine(SpawnZigzagBullets());
+        }
 
-         yield return new WaitForSeconds(pauseDuration);
+        IEnumerator SpawnZigzagBullets()
+        {
+            while (true)
+            {
+                float waveEndTime = Time.time + waveDuration;
+                while (Time.time < waveEndTime)
+                {
+                    GameObject bullet1 = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    GameObject bullet2 = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    bullet2.GetComponent<ZigZagBullet>().secondBullet = true;
+                    yield return new WaitForSeconds(1f / bulletPerSecond);
+                }
+
+                yield return new WaitForSeconds(pauseDuration);
+            }
         }
     }
 }
