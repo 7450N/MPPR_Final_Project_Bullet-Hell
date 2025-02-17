@@ -93,7 +93,7 @@ namespace Jason
                     float angle = i * (360f / bulletCount);
                     Vector3 direction = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
                     GameObject bullet = Instantiate(normalBulletPrefab, transform.position + direction * radius, Quaternion.identity);
-                    bullet.AddComponent<BulletMovement>().SetDirection(direction, bulletSpeed);
+                    bullet.GetComponent<BulletMovement>().SetDirection(direction, bulletSpeed);
                 }
                 yield return new WaitForSeconds(bulletInterval);
             }
@@ -109,7 +109,7 @@ namespace Jason
                     float angle = angleOffset + i * (360f / bulletCount);
                     Vector3 direction = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
                     GameObject bullet = Instantiate(normalBulletPrefab, transform.position, Quaternion.identity);
-                    bullet.AddComponent<BulletMovement>().SetDirection(direction, bulletSpeed);
+                    bullet.GetComponent<BulletMovement>().SetDirection(direction, bulletSpeed);
 
                     angleOffset += rotationSpeed; // Rotate the next batch
 
@@ -127,7 +127,7 @@ namespace Jason
                     float angle = -spreadAngle / 2 + (spreadAngle / (bulletCount - 1)) * i;
                     Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
                     GameObject bullet = Instantiate(normalBulletPrefab, transform.position, Quaternion.identity);
-                    bullet.AddComponent<BulletMovement>().SetDirection(direction, bulletSpeed);
+                    bullet.GetComponent<BulletMovement>().SetDirection(direction, bulletSpeed);
                 }
                 yield return new WaitForSeconds(bulletInterval);
             }
@@ -150,12 +150,11 @@ namespace Jason
         IEnumerator FireHomingBullet()
         {
             while (true)
-                while (true)
-                {
-                    GameObject bullet = Instantiate(homingBulletPrefab, transform.position, Quaternion.identity);
-                    bullet.AddComponent<HomingBullet>().SetSpeed(bulletSpeed);
-                    yield return new WaitForSeconds(bulletInterval);
-                }
+            {
+                GameObject bullet = Instantiate(homingBulletPrefab, transform.position, Quaternion.identity);
+                bullet.GetComponent<HomingBullet>().SetSpeed(bulletSpeed);
+                yield return new WaitForSeconds(bulletInterval);
+            }
         }
     }
 }
