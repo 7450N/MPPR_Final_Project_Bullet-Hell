@@ -32,7 +32,9 @@ namespace Janaw
 
             if (movementInput != Vector2.zero)
             {
-                transform.Translate(movementInput * movementSpeed * Time.deltaTime);
+                Vector4 newPosition = transform.position + (Vector3)(movementInput * movementSpeed * Time.deltaTime);
+                newPosition = ClampPositionToScreen(newPosition);
+                transform.position = newPosition;
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -54,6 +56,14 @@ namespace Janaw
             }
 
             CheckForBullets();
+        }
+
+        private Vector3 ClampPositionToScreen(Vector3 position)
+        {
+            Vector3 viewportPosition = Camera.main.WorldToViewportPoint(position);
+            viewportPosition.x = Mathf.Clamp01(viewportPosition.x);
+            viewportPosition.y = Mathf.Clamp01(viewportPosition.y);
+            return Camera.main.ViewportToWorldPoint(viewportPosition);
         }
         private IEnumerator ShootContinuously()
         {
@@ -80,7 +90,7 @@ namespace Janaw
             {
                 if (Vector2.Distance(transform.position, bullet.transform.position) < detectionRange)
                 {
-                    TakeDamage(10);
+                    TakeDamage(5);
                     Destroy(bullet);
                 }
             }

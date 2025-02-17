@@ -1,44 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Gabriel{
+
+namespace Gabriel
+{
     public class EnemyBulletPattern2 : MonoBehaviour
     {
-        public GameObject projectilePrefab;
-        public Transform firePoint;
-        public float bulletsPerSecond = 10f;
-        private Transform player;
-        public float duration = 3f;
-        public bool isShooting = false;
+        public GameObject projectilePrefab; // Projectile to spawn
+        public Transform firePoint; // Firing position
+        public float bulletsPerSecond = 10f; // Fire rate
+        private Transform player; // Reference to the player
+        public float duration = 3f; // Time for projectile to follow curve
+        public bool isShooting = false; // Controls shooting state
 
         private void Start()
         {
+            // Find the player in the scene
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            // Start shooting coroutine
             StartCoroutine(ShootContinuously());
         }
 
-
         public void ToggleShooting(bool enable)
         {
+            // Enable or disable shooting
             isShooting = enable;
         }
 
         private void Shoot()
         {
+            // Spawn a projectile
             SpawnProjectile();
         }
 
         private void SpawnProjectile()
         {
+            // Instantiate a projectile and start moving it along a curve
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             StartCoroutine(MoveAlongBezierCurve(projectile));
         }
 
         private IEnumerator MoveAlongBezierCurve(GameObject projectile)
         {
-            Vector3 startPoint = projectile.transform.position;
-            Vector3 endPoint = player.position;
-            Vector3 controlPoint = GetRandomScreenPoint();
+            Vector3 startPoint = projectile.transform.position; // Start position
+            Vector3 endPoint = player.position; // Target position (player)
+            Vector3 controlPoint = GetRandomScreenPoint(); // Random curve point
 
             float timeElapsed = 0;
 
@@ -47,6 +53,7 @@ namespace Gabriel{
                 timeElapsed += Time.deltaTime;
                 float t = timeElapsed / duration;
 
+                // Bezier curve calculation
                 Vector3 bezierPosition = Mathf.Pow(1 - t, 2) * startPoint +
                                          2 * (1 - t) * t * controlPoint +
                                          Mathf.Pow(t, 2) * endPoint;
@@ -58,6 +65,7 @@ namespace Gabriel{
                 yield return null;
             }
 
+            // Ensure projectile reaches the endpoint and then destroy it
             if (projectile != null)
             {
                 projectile.transform.position = endPoint;
@@ -67,6 +75,7 @@ namespace Gabriel{
 
         private Vector3 GetRandomScreenPoint()
         {
+            // Get a random point on the screen and convert it to world space
             Camera cam = Camera.main;
             if (cam == null) return Vector3.zero;
 
@@ -84,6 +93,7 @@ namespace Gabriel{
                     Shoot();
                 }
 
+                // Wait based on fire rate
                 yield return new WaitForSeconds(1f / bulletsPerSecond);
             }
         }

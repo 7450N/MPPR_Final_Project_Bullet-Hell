@@ -339,10 +339,10 @@ GameObject:
   m_Component:
   - component: {fileID: 250870076}
   - component: {fileID: 250870075}
-  - component: {fileID: 250870074}
   - component: {fileID: 250870073}
+  - component: {fileID: 250870077}
   m_Layer: 0
-  m_Name: Boss1 (2)
+  m_Name: BossZigZagHoming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,26 +361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7567635730932610947, guid: 2b1682bc6ed31e94f8606ef84661dc8a, type: 3}
-  bulletPerSecond: 10
+  bulletPerSecond: 7
   waveDuration: 2
-  pauseDuration: 1
---- !u!114 &250870074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250870072}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536d5725572e3974fa6ec1fc64e9348b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8183796233799885312, guid: 06aca9fee8b7bd64a853ccdf3d0c2857, type: 3}
-  bulletCount: 4
-  bulletPerSecond: 10
-  waveDuration: 2
-  pauseDuration: 1
+  pauseDuration: 2
 --- !u!212 &250870075
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -448,6 +431,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &250870077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250870072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c3d5a066e2a09479e4af7360acc235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  areaSize: 3
+  maxHealth: 500
+  currentHealth: 0
+  detectionRange: 0.9
 --- !u!1 &988950668
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,48 +591,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1274780931}
   - component: {fileID: 1274780930}
-  - component: {fileID: 1274780929}
-  - component: {fileID: 1274780928}
+  - component: {fileID: 1274780932}
+  - component: {fileID: 1274780933}
   m_Layer: 0
-  m_Name: Boss1 (1)
+  m_Name: BossHoming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1274780928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274780927}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f5145db5c864a448ac31abcafefef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7567635730932610947, guid: 2b1682bc6ed31e94f8606ef84661dc8a, type: 3}
-  bulletPerSecond: 10
-  waveDuration: 4
-  pauseDuration: 1
---- !u!114 &1274780929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274780927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536d5725572e3974fa6ec1fc64e9348b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8183796233799885312, guid: 06aca9fee8b7bd64a853ccdf3d0c2857, type: 3}
-  bulletCount: 4
-  bulletPerSecond: 10
-  waveDuration: 4
-  pauseDuration: 1
 --- !u!212 &1274780930
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -700,6 +667,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1274780932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274780927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1667c87d5bfe2c4facc267bf2c66d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3914664014215930533, guid: 0f12e2de5cb0cc54698f5301f71bea1d, type: 3}
+  bulletPerSecond: 3
+  waveDuration: 2
+  pauseDuration: 1
+--- !u!114 &1274780933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274780927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c3d5a066e2a09479e4af7360acc235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  areaSize: 3
+  maxHealth: 500
+  currentHealth: 0
+  detectionRange: 0.9
 --- !u!1 &1795919286
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,10 +858,9 @@ GameObject:
   - component: {fileID: 1977253033}
   - component: {fileID: 1977253032}
   - component: {fileID: 1977253031}
-  - component: {fileID: 1977253034}
-  - component: {fileID: 1977253035}
+  - component: {fileID: 1977253036}
   m_Layer: 0
-  m_Name: Boss1
+  m_Name: BossTorandoPattern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -874,16 +873,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977253030}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536d5725572e3974fa6ec1fc64e9348b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8183796233799885312, guid: 06aca9fee8b7bd64a853ccdf3d0c2857, type: 3}
   bulletCount: 4
-  bulletPerSecond: 10
+  bulletPerSecond: 6
   waveDuration: 2
-  pauseDuration: 1
+  pauseDuration: 2
 --- !u!212 &1977253032
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -951,23 +950,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1977253034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977253030}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f5145db5c864a448ac31abcafefef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7567635730932610947, guid: 2b1682bc6ed31e94f8606ef84661dc8a, type: 3}
-  bulletPerSecond: 10
-  waveDuration: 2
-  pauseDuration: 1
---- !u!114 &1977253035
+--- !u!114 &1977253036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -976,13 +959,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1977253030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1667c87d5bfe2c4facc267bf2c66d0e, type: 3}
+  m_Script: {fileID: 11500000, guid: c9c3d5a066e2a09479e4af7360acc235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3914664014215930533, guid: 0f12e2de5cb0cc54698f5301f71bea1d, type: 3}
-  spawnDelay: 0.2
-  waveDuration: 2
-  pauseDuration: 1
+  moveSpeed: 0.5
+  areaSize: 2
+  maxHealth: 500
+  currentHealth: 0
+  detectionRange: 0.9
 --- !u!1001 &8286559686667577327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1041,7 +1025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4284153743191281221, guid: 71e65f9a7da80044bbe20e4eb05e41df, type: 3}
       propertyPath: movementSpeed
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4982495839551401686, guid: 71e65f9a7da80044bbe20e4eb05e41df, type: 3}
       propertyPath: m_LocalPosition.x

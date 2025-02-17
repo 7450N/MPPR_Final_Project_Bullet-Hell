@@ -5,19 +5,19 @@ namespace Joseph
 {
     public class SceneChanger : MonoBehaviour
     {
-        public float delay = 5f; // Time in seconds before changing the scene
-        public string sceneName; // Name of the scene to load
+        public float delay = 5f; // Time in seconds before the scene changes.
+        public string sceneName; // Name of the scene to load.
 
         void Start()
         {
-            // Invoke the scene change after the specified delay
+            // Changes the scene after said time.
             Invoke("ChangeScene", delay);
         }
 
         void ChangeScene()
         {
+            // Load the scene with the specified name.
             SceneManager.LoadScene(sceneName);
         }
     }
-
 }

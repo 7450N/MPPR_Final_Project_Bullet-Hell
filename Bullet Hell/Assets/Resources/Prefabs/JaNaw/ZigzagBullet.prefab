@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 41998872404159742}
   - component: {fileID: 5424963888900335324}
   m_Layer: 0
-  m_Name: ZigzagBulletJ
+  m_Name: ZigzagBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
