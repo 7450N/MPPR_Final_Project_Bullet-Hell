@@ -17,3 +17,8 @@ public static class PlayerConstants
     public static float ZMinRange { get; set; }
     public static float ZMaxRange { get; set; }
 }
+
+public static class BulletConstants
+{
+    public static float BulletYPos { get; set; }
+}
