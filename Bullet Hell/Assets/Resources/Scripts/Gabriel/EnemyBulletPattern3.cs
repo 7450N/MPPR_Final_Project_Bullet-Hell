@@ -72,7 +72,10 @@ namespace Gabriel
 
                 // Calculate the position manually instead of using Lerp
                 Vector3 newPosition = startPoint + (endPoint - startPoint) * t;
-                projectile.transform.position = newPosition;
+                if (projectile != null)
+                {
+                    projectile.transform.position = newPosition; 
+                }
 
                 yield return null;
             }
@@ -82,6 +85,8 @@ namespace Gabriel
                 projectile.transform.position = endPoint;
                 Destroy(projectile);
             }
+            yield return null;
+
         }
 
         private void Shoot()
