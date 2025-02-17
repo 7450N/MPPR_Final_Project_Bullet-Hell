@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 984316766186776076}
   - component: {fileID: 681952213288880139}
   - component: {fileID: 609570736831057951}
-  - component: {fileID: 4413314458405685729}
   - component: {fileID: 6523411455855966799}
   m_Layer: 0
   m_Name: Turrent
@@ -86,27 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4413314458405685729
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785601763783955402}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6523411455855966799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,10 +151,10 @@ GameObject:
   - component: {fileID: 8047232080738733572}
   - component: {fileID: 7064139045797251300}
   - component: {fileID: 7426414346675642635}
-  - component: {fileID: 4950318626374975882}
+  - component: {fileID: 7052685018017768927}
   m_Layer: 0
   m_Name: Snake Body
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,27 +225,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4950318626374975882
-SphereCollider:
+--- !u!114 &7052685018017768927
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5906994454928081164}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67f253c98a202846a876b88c117f87c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRadius: 0
 --- !u!1 &5911292565114251301
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +249,6 @@ GameObject:
   - component: {fileID: 2839632800271818780}
   - component: {fileID: 4262646390149642959}
   - component: {fileID: 5423378805574271038}
-  - component: {fileID: 1167014368134578089}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -353,26 +322,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1167014368134578089
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5911292565114251301}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

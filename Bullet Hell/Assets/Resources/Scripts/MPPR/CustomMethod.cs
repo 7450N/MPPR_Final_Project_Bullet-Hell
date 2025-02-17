@@ -151,5 +151,10 @@ namespace MPPR
             float ttt = tt * t;
             return uuu * p0 + 3 * uu * t * p1 + 3 * u * tt * p2 + ttt * p3;
         }
+
+        public static Color Lerp(Color start, Color end, float t) //Linear Interpolation method for color using the formula Lerp(A,B,t) = (1-t)A + tB
+        {
+            return (1 - t) * start + t * end;       //return the linear interpolation of 2 colors
+        }
     }
 }

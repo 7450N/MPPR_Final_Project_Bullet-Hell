@@ -25,6 +25,8 @@ namespace Jason
         [SerializeField] private float zMaxRange = 8.5f;
         [SerializeField] private float zMinRange = -8.5f;
 
+        public float enemyHp = 100;
+
         private Vector3 targetPos;
 
         // Start is called before the first frame update
@@ -45,6 +47,7 @@ namespace Jason
         void Update()
         {
             Move();
+            CheckHealth();
         }
 
 
@@ -89,6 +92,14 @@ namespace Jason
             //targetPos.z = 0;
             targetPos.z = Random.Range(SnakeConstants.ZMinRange, SnakeConstants.ZMaxRange);
             targetPos.y = 0.5f;
+        }
+
+        private void CheckHealth()
+        {
+            if (enemyHp <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

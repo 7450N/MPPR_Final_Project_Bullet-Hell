@@ -260,7 +260,8 @@ Transform:
   m_LocalPosition: {x: 9.64, y: 0.5, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2018874024}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &579877354
@@ -280,6 +281,11 @@ MonoBehaviour:
   zMinRange: -9
   zMaxRange: 9
   speed: 5
+  bulletPrefab: {fileID: 6959805847593103515, guid: e4c92efa8d68ad24abbadb69a074bec7, type: 3}
+  firePoint: {fileID: 2018874024}
+  bulletSpeed: 10
+  fireRate: 0.2
+  maxHealth: 100
 --- !u!1 &739402017
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,10 +403,9 @@ GameObject:
   - component: {fileID: 976857853}
   - component: {fileID: 976857856}
   - component: {fileID: 976857855}
-  - component: {fileID: 976857854}
   m_Layer: 0
   m_Name: Snake Head
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,27 +425,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1236948204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &976857854
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976857852}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &976857855
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -651,6 +635,7 @@ MonoBehaviour:
   xMinRange: -16.5
   zMaxRange: 8.5
   zMinRange: -8.5
+  enemyHp: 100
 --- !u!1 &1557645558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +1032,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &2018874023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018874024}
+  m_Layer: 0
+  m_Name: Firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018874024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018874023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 579877353}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2083638629
 GameObject:
   m_ObjectHideFlags: 0
